@@ -1,0 +1,46 @@
+{
+    "pills":[
+        {
+            "name": "Aspirin",
+            "cost": 124,
+            "description": "lorem ipsum",
+            "incompatible": "Аскорбиновая кислота"
+        },
+        {
+            "name": "Buprofen",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Арбидол",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Цитромон",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Таблетка",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Аскорбиновая кислота",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Ecodrops Nostress",
+            "cost": 124,
+            "description": "lorem ipsum"
+        },
+        {
+            "name": "Иван Чай",
+            "cost": 124,
+            "description": "lorem ipsum",
+            "incompatible": "Арбидол"
+        }
+    ]
+}
