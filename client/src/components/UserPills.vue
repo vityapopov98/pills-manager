@@ -105,20 +105,7 @@ export default {
       var data = {
         pills: this.inputPills
       }
-
-      fetch('/api/addUserPills',
-      {
-        method: 'POST',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.post('/api/addUserPills', data).then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.pills
@@ -126,6 +113,26 @@ export default {
         console.log('incp', data.incompatible.length)
         this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
       })
+      // fetch('/api/addUserPills',
+      // {
+      //   method: 'POST',
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   },
+      //   body: JSON.stringify(data)
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.pills
+      //   console.log('incp', data.incompatible)
+      //   console.log('incp', data.incompatible.length)
+      //   this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
+      // })
     },
     changePillsInput(event){
       this.inputPills.name = event.target.options[event.target.options.selectedIndex].text
@@ -134,54 +141,56 @@ export default {
       this.inputPills = this.catalog[event.target.options.selectedIndex-1]
       
     },
-    // analyzePillsCompatibility(){
-    //   this.pills.forEach((element, index)=>{
-    //     console.log("el", element.name)
-    //     console.log("el", this.catalog[index].incompatible)
-    //     this.catalog.forEach(catalogPills =>{
-    //         if(catalogPills.incompatible == element.name){
-    //           alert(`Несовместимые лекарста ${catalogPills.name} и ${element.name}`)
-    //         }
-    //     })
-    //   })
-    // },
     daleteUserPills(index){
-      fetch(`/api/deleteUserPills?index=${index}`,
-      {
-        method: 'DELETE',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
-        console.log(data)
+      this.requests.delete(`/api/deleteUserPills?index=${index}`).then(data=>{
+        // console.log(data)
         this.res = data
         this.pills = data.pills
-        console.log('incp', data)
+        // console.log('incp', data)
       })
+      
+      // fetch(`/api/deleteUserPills?index=${index}`,
+      // {
+      //   method: 'DELETE',
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   }
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.pills
+      //   console.log('incp', data)
+      // })
     },
     loadUserPills(){
-      fetch('/api/getUserPills',
-      {
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.get('/api/getUserPills').then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.pills
         console.log('incp', data)
       })
+
+      // fetch('/api/getUserPills',
+      // {
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   }
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.pills
+      //   console.log('incp', data)
+      // })
 
 
       fetch('pillsCatalog.json',

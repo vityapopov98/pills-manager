@@ -84,19 +84,7 @@ export default {
         pills: this.inputPills
       }
 
-      fetch('/api/addRecipePills',
-      {
-        method: 'POST',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.post('/api/addRecipePills', data).then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.recipe
@@ -105,7 +93,28 @@ export default {
         this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
         this.sumCost = data.cost
       })
-      // this.loadUserPills()
+
+      // fetch('/api/addRecipePills',
+      // {
+      //   method: 'POST',
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   },
+      //   body: JSON.stringify(data)
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.recipe
+      //   console.log('incp', data.incompatible)
+      //   console.log('incp', data.incompatible.length)
+      //   this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
+      //   this.sumCost = data.cost
+      // })
 
     },
     changePillsInput(event){
@@ -116,44 +125,58 @@ export default {
       
     },
     daleteUserPills(index){
-      fetch(`/api/deleteRecipePills?index=${index}`,
-      {
-        method: 'DELETE',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.delete(`/api/deleteRecipePills?index=${index}`).then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.recipe
         console.log('incp', data)
         this.sumCost = data.cost
       })
+      // fetch(`/api/deleteRecipePills?index=${index}`,
+      // {
+      //   method: 'DELETE',
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   }
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.recipe
+      //   console.log('incp', data)
+      //   this.sumCost = data.cost
+      // })
     },
     loadUserPills(){
-      fetch('/api/getRecipePills',
-      {
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.get('/api/getRecipePills').then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.recipe
         console.log('cost', data)
         this.sumCost = data.cost
       })
+      // fetch('/api/getRecipePills',
+      // {
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   }
+
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.recipe
+      //   console.log('cost', data)
+      //   this.sumCost = data.cost
+      // })
 
 
       fetch('pillsCatalog.json',
@@ -178,19 +201,7 @@ export default {
       var data = {
         pills: this.pills
       }
-      fetch('/api/addRecipeToUserPills',
-      {
-        method: 'POST',
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-      ).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data=>{
+      this.requests.post('/api/addRecipeToUserPills', data).then(data=>{
         console.log(data)
         this.res = data
         this.pills = data.recipe
@@ -199,6 +210,27 @@ export default {
         this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
         this.sumCost = data.cost
       })
+      // fetch('/api/addRecipeToUserPills',
+      // {
+      //   method: 'POST',
+      //   headers : { 
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //   },
+      //   body: JSON.stringify(data)
+      // }
+      // ).then(res=>{
+      //   console.log(res)
+      //   return res.json()
+      // }).then(data=>{
+      //   console.log(data)
+      //   this.res = data
+      //   this.pills = data.recipe
+      //   console.log('incp', data.incompatible)
+      //   console.log('incp', data.incompatible.length)
+      //   this.incompatibilityNotification = data.incompatible[data.incompatible.length-1]
+      //   this.sumCost = data.cost
+      // })
     }
   },
   mounted(){
